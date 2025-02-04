@@ -32,7 +32,9 @@ def save_article_to_file(article):
 def home():
     articles = load_articles()
     return render_template('index.html', articles=articles)
-
+if __name__ == '__main__':
+    # Listen on all network interfaces (0.0.0.0) to work with Railway
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
 @app.route('/article/<int:id>')
 def article_page(id):
     articles = load_articles()
